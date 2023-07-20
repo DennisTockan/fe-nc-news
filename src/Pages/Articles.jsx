@@ -42,6 +42,7 @@ const Articles = () => {
                 votes={votes}
                 image={article_img_url}
                 commentCount={comment_count}
+                article_id={article_id}
               />
             );
           }

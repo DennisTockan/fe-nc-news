@@ -39,13 +39,9 @@
     padding: 15px;
 }
 
-
-
-
 .articles h1 {
   color:rgb(123, 90, 47);
 }
-
 
 .card{
   padding: 30px;
@@ -57,3 +53,12 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.3);
 }
 
+
+.single-article {
+  text-align: left;
+  padding-left: 5ç%;
+}
+
+.single-article h2 {
+  color:rgb(123, 90, 47)
+}
