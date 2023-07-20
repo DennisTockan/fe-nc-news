@@ -49,10 +49,32 @@
   border: 2px solid rgb(218, 207, 207) ;
 }
 
+.comments{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 4px solid rgb(218, 207, 207) ;
+}
+.comments .comments-header{
+  margin-top: 20px;
+
+}
+.comment-card{
+  padding: 8px;
+  margin: 10px 0;
+  border-top: 2px solid rgb(218, 207, 207) ;
+}
+
+.comment-card .author{
+font-size:large;
+}
+
 .card:hover{
   box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.3);
 }
 
+.article-image {
+  max-inline-size: 100%;
+}
 
 .single-article {
   text-align: left;
