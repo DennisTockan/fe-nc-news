@@ -22,3 +22,12 @@ export const getSingleArticleComments = (article_id) => {
     })
 } 
 
+export const patchArticleVote = (article_id) => {
+    const patchRequestedArticleVote = {
+        inc_votes: 1
+    }
+    return newsApi.patch(`/articles/${article_id}`, patchRequestedArticleVote).then(({data}) => {
+        return data.article
+    })
+}
+
