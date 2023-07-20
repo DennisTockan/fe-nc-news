@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleArticle, getSingleArticleComments, patchArticleVote } from "../Api";
+import {
+  getSingleArticle,
+  getSingleArticleComments,
+  patchArticleVote,
+} from "../Api";
 import CommentCard from "../Components/Comment-Card";
 
 const SingleArticle = () => {
@@ -35,18 +39,23 @@ const SingleArticle = () => {
       });
   }, []);
 
-const [displayedVotes, setDisplayedVotes] = useState(0)
+  const [displayedVotes, setDisplayedVotes] = useState(0);
 
   const handleClick = () => {
-    patchArticleVote(article_id).then((updatedVote) => {
+    setDisplayedVotes((currentDisplayedVotes) => {
+      return currentDisplayedVotes + 1;
+    });
+    patchArticleVote(article_id)
+    .catch(() => {
       setDisplayedVotes((currentDisplayedVotes) => {
-        return currentDisplayedVotes + 1;
-      })
-    }) 
-  }
+        return currentDisplayedVotes - 1;
+      });
+      setIsError(true);
+    });
+  };
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p> Oops! Something's gone wrong!</p>;
+  // if (isError) return <p> Oops! Something's gone wrong!</p>;
 
   return (
     <>
@@ -63,7 +72,15 @@ const [displayedVotes, setDisplayedVotes] = useState(0)
         />
         <p>{article.body}</p>
         <p>Likes: {article.votes + displayedVotes}</p>
-        <button aria-label="like button" onClick={handleClick}> 👍 </button>
+        <button
+          aria-label="like button"
+          onClick={handleClick}
+          disabled={displayedVotes > 0}
+        >
+          {" "}
+          👍{" "}
+        </button>
+        {isError ? <p>Oops! Something's gone wrong! Please try again!</p> : null}
       </section>
 
       <section className="comments">
