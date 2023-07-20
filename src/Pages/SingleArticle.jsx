@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleArticle, getSingleArticleComments } from "../Api";
+import { getSingleArticle, getSingleArticleComments, patchArticleVote } from "../Api";
 import CommentCard from "../Components/Comment-Card";
 
 const SingleArticle = () => {
@@ -35,6 +35,16 @@ const SingleArticle = () => {
       });
   }, []);
 
+const [displayedVotes, setDisplayedVotes] = useState(0)
+
+  const handleClick = () => {
+    patchArticleVote(article_id).then((updatedVote) => {
+      setDisplayedVotes((currentDisplayedVotes) => {
+        return currentDisplayedVotes + 1;
+      })
+    }) 
+  }
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p> Oops! Something's gone wrong!</p>;
 
@@ -52,7 +62,8 @@ const SingleArticle = () => {
           className="article-image"
         />
         <p>{article.body}</p>
-        <p>Likes: {article.votes}</p>
+        <p>Likes: {article.votes + displayedVotes}</p>
+        <button aria-label="like button" onClick={handleClick}> 👍 </button>
       </section>
 
       <section className="comments">
