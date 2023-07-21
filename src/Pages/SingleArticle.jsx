@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getSingleArticle,
-  getSingleArticleComments,
-  patchArticleVote,
-} from "../Api";
+import { getSingleArticle, getSingleArticleComments } from "../Api";
+import SingleArticleCard from "../Components/SingleArticleCard";
 import CommentCard from "../Components/Comment-Card";
 
 const SingleArticle = () => {
@@ -39,52 +36,29 @@ const SingleArticle = () => {
       });
   }, []);
 
-  const [displayedVotes, setDisplayedVotes] = useState(0);
-
-  const handleClick = () => {
-    setDisplayedVotes((currentDisplayedVotes) => {
-      return currentDisplayedVotes + 1;
-    });
-    patchArticleVote(article_id)
-    .catch(() => {
-      setDisplayedVotes((currentDisplayedVotes) => {
-        return currentDisplayedVotes - 1;
-      });
-      setIsError(true);
-    });
-  };
-
   if (isLoading) return <p>Loading...</p>;
   // if (isError) return <p> Oops! Something's gone wrong!</p>;
 
   return (
     <>
       <section className="single-article">
-        <div className="header">
-          <h2>{article.title}</h2>
-          <p>Created by: {article.author}</p>
-          <p>Date:{article.created_at.slice(0, 10)}</p>
-        </div>
-        <img
-          src={article.article_img_url}
-          alt={article.article_img_url}
-          className="article-image"
+        <SingleArticleCard
+          title={article.title}
+          author={article.author}
+          body={article.body}
+          topic={article.topic}
+          created_at={article.created_at}
+          votes={article.votes}
+          image={article.article_img_url}
+          commentCount={article.comment_count}
+          article_id={article.article_id}
+          isError={isError}
+          setIsError={setIsError}
         />
-        <p>{article.body}</p>
-        <p>Likes: {article.votes + displayedVotes}</p>
-        <button
-          aria-label="like button"
-          onClick={handleClick}
-          disabled={displayedVotes > 0}
-        >
-          {" "}
-          👍{" "}
-        </button>
-        {isError ? <p>Oops! Something's gone wrong! Please try again!</p> : null}
       </section>
 
       <section className="comments">
-        <h2 className="comments-header">Comments ({comments.length})</h2>
+        <h2 className="comments-header"> Comments ({comments.length})</h2>
         <ol className="comments_list">
           {comments.map(({ comment_id, votes, body, author, created_at }) => {
             return (
