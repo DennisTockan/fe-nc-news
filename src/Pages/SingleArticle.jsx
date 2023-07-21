@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getSingleArticle, getSingleArticleComments } from "../Api";
 import SingleArticleCard from "../Components/SingleArticleCard";
 import CommentCard from "../Components/Comment-Card";
+import AddComments from "../Components/AddComments";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -56,6 +57,11 @@ const SingleArticle = () => {
           setIsError={setIsError}
         />
       </section>
+
+    <section className="">
+      <AddComments />
+
+    </section>
 
       <section className="comments">
         <h2 className="comments-header"> Comments ({comments.length})</h2>
