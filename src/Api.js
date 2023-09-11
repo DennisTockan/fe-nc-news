@@ -33,15 +33,15 @@ export const patchArticleVote = (article_id) => {
     });
 };
 
-export const addComment = (article_id) => {
+export const addComment = (article_id, username, body) => {
   const postReqBody = {
-    username: "DennisTockan11",
-    body: "Wow!, This was a very insightful article.",
+    username: username,
+    body: body
   };
-
+  
   return newsApi
     .post(`/articles/${article_id}/comments`, postReqBody)
-    .then((data) => {
-       return data.comments 
+    .then(({data}) => {
+       return data.comment;
     });
 };

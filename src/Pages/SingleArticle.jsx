@@ -58,22 +58,25 @@ const SingleArticle = () => {
         />
       </section>
 
-    <section className="">
-      <AddComments />
-
-    </section>
-
       <section className="comments">
-        <h2 className="comments-header"> Comments ({comments.length})</h2>
+      <AddComments 
+      setComments={setComments} 
+      article_id={article.article_id}
+      isLoading={isLoading}
+      setIsLoading={setIsLoading}
+      setIsError={setIsError}
+      />
+        <h2 className="comments-header"> Comments ({comments.length})</h2> <br />
         <ol className="comments_list">
-          {comments.map(({ comment_id, votes, body, author, created_at }) => {
+          {comments.map((article) => {
             return (
               <CommentCard
-                key={comment_id}
-                author={author}
-                body={body}
-                created_at={created_at}
-                votes={votes}
+              comment_id={article.comment_id}
+              author={article.author}
+              body={article.body}
+              created_at={article.created_at}
+              votes={article.votes}
+              key={article.comment_id}
               />
             );
           })}
