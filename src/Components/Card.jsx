@@ -9,6 +9,8 @@ const Card = ({ title, author, created_at, votes, image, commentCount, article_i
         <p>{body}</p>
         <p>Created by: {author}</p>
         <p>Uploaded on: {created_at.slice(0, 10)}</p>
+        <p>Comments: {commentCount}</p>
+        <p>Likes: {votes}</p>
       </div>
      </Link> 
   );
