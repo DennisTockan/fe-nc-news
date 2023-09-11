@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import Articles from "./Pages/Articles";
 import SingleArticles from "./Pages/SingleArticle"
+import Topic from "./Pages/Topic"
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/articles/:topic" element={<Topic/> }/>
         <Route path="/articles/:article_id" element={<SingleArticles />}/>
       </Routes>
 
