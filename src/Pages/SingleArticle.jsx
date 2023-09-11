@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleArticle, getSingleArticleComments } from "../Api";
+import { getSingleArticle, getSingleArticleComments } from "../Utils/Api";
 import SingleArticleCard from "../Components/SingleArticleCard";
 import CommentCard from "../Components/Comment-Card";
 import AddComments from "../Components/AddComments";
