@@ -47,8 +47,8 @@ const Topic = () => {
                 onChange={(e) => setSort_by(e.target.value)}
                 className="select-option"
               >
-                <option value="votes">Votes</option>
-                <option value="comment_count">Comment count</option>
+                <option value="votes">Likes</option>
+                <option value="comment_count">Comments</option>
                 <option value="created_at">Date</option>
               </select>
             </form>
@@ -62,7 +62,7 @@ const Topic = () => {
                   created_at,
                   votes,
                   article_img_url,
-                  comment_count,
+                  comment_count
                 }) => {
                   return (
                     <Card
@@ -72,7 +72,7 @@ const Topic = () => {
                       created_at={created_at}
                       votes={votes}
                       image={article_img_url}
-                      commentCount={comment_count}
+                      comment_count={comment_count}
                       article_id={article_id}
                     />
                   );

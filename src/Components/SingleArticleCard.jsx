@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { patchArticleVote } from "../Utils/Api";
 
-const SingleArticleCard = ({title,author, article_id, body, created_at, votes, image, isError, setIsError}) => {
+const SingleArticleCard = ({title, author, article_id, body, created_at, votes, image, isError, setIsError}) => {
   const [displayedVotes, setDisplayedVotes] = useState(0);
 
   const handleClick = () => {
